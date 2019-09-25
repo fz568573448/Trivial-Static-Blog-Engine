@@ -7,6 +7,9 @@
     function getItem($id)
     {
         $data=file_get_contents("archives/$id");
+        if ($data==false) {
+            return "";
+        }
         $dom = new simple_html_dom();
         $dom->load($data);
         $title=trim($dom->find('h1.title a',1)->innertext);
